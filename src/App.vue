@@ -2,7 +2,7 @@
   <v-app>
     <router-view :key="$route.path" name="header"></router-view>
 
-    <v-main>
+    <v-main class="bg-gray">
       <v-container fluid>
         <router-view :key="$route.fullPath" ></router-view>
       </v-container>

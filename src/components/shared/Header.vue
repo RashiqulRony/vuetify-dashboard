@@ -9,6 +9,7 @@
         <v-list-item prepend-icon="mdi-home" title="Dashboard" :to="'/dashboard'" value="Dashboard"></v-list-item>
         <v-list-item prepend-icon="mdi-account" title="Users" :to="'/users'" value="Users"></v-list-item>
         <v-list-item prepend-icon="mdi-cube" title="Categories" :to="'/categories'" value="Categories"></v-list-item>
+        <v-list-item prepend-icon="mdi-note" title="Posts" :to="'/posts'" value="Posts"></v-list-item>
       </v-list>
     </v-navigation-drawer>
 

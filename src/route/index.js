@@ -10,6 +10,8 @@ import NotFound     from '@/components/NotFound'
 import Users        from '@/components/users/Index'
 import UserCreate   from '@/components/users/Create'
 
+import Posts        from '@/components/posts/Index'
+
 const routes = [
     {
         path: "/",
@@ -61,6 +63,18 @@ const routes = [
         },
         meta: {
             title: 'User Create'
+        }
+    },
+    {
+        path: "/posts",
+        name: "Posts",
+        components: {
+            'default': Posts,
+            'header': Header,
+            'footer': Footer,
+        },
+        meta: {
+            title: 'Posts'
         }
     },
     {
