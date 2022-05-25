@@ -1,4 +1,4 @@
-# my-beta-app
+# Vuetify dashboard example
 
 ## Project setup
 ```
