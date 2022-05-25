@@ -48,10 +48,19 @@ export default {
   data: () => ({
     drawer: false,
   }),
-  watch: {
-    group () {
-      this.drawer = false
-    },
+
+  mounted() {
+    this.drawerView();
   },
+
+  methods: {
+    drawerView() {
+      if (window.innerWidth < 1280) {
+        this.drawer = false
+      } else {
+        this.drawer = true
+      }
+    }
+  }
 }
 </script>
