@@ -46,7 +46,7 @@ export default {
   name: 'HeaderComponent',
 
   data: () => ({
-    drawer: true,
+    drawer: false,
   }),
   watch: {
     group () {
