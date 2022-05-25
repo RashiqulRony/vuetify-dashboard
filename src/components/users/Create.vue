@@ -8,127 +8,81 @@
 
     <v-container class="grey lighten-5">
       <v-row>
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-1">
-            <v-card-text>
-              Example - 1
-            </v-card-text>
-          </v-card>
-        </v-col>
+        <v-col cols="12" sm="6" md="6">
+          <v-card>
+            <v-card-title>
+              User Create
+            </v-card-title>
+            <v-divider/>
 
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-2">
-            <v-card-text>
-              Example - 2
-            </v-card-text>
-          </v-card>
-        </v-col>
+            <div class="pa-5">
+              <v-form ref="users" va @submit.prevent="userCreate()" lazy-validation>
 
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-3">
-            <v-card-text>
-              Example - 3
-            </v-card-text>
-          </v-card>
-        </v-col>
+                <v-text-field v-model="users.name" :rules="users.nameRules" type="text" label="Name" required></v-text-field>
 
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-4">
-            <v-card-text>
-              Example - 4
-            </v-card-text>
+                <v-text-field v-model="users.email" :rules="users.emailRules" type="email" label="E-mail" required></v-text-field>
+
+                <v-text-field v-model="users.phone" :rules="users.phoneRules" type="text" label="Phone" required></v-text-field>
+
+                <v-btn color="success" class="mr-4" type="submit">
+                  Save
+                </v-btn>
+
+              </v-form>
+            </div>
           </v-card>
         </v-col>
 
       </v-row>
     </v-container>
 
-    <v-container>
-      <v-card>
-        <v-card-title>
-          Exam Table
-        </v-card-title>
-
-        <v-table>
-          <thead>
-          <tr>
-            <th class="text-left">
-              Name
-            </th>
-            <th class="text-left">
-              Calories
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr
-              v-for="item in desserts"
-              :key="item.name"
-          >
-            <td>{{ item.name }}</td>
-            <td>{{ item.calories }}</td>
-          </tr>
-          </tbody>
-        </v-table>
-      </v-card>
-    </v-container>
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComponent',
+  name: 'UserCreate',
   data: () => ({
     breadcrumbs: [
       {
         text: 'Dashboard',
+        disabled: false,
+        to: '/dashboard',
+      },
+      {
+        text: 'Users',
+        disabled: false,
+        to: '/users',
+      },
+      {
+        text: 'Create',
         disabled: true,
-        to: '/',
       }
     ],
-    desserts: [
-      {
-        name: 'Frozen Yogurt',
-        calories: 159,
-      },
-      {
-        name: 'Ice cream sandwich',
-        calories: 237,
-      },
-      {
-        name: 'Eclair',
-        calories: 262,
-      },
-      {
-        name: 'Cupcake',
-        calories: 305,
-      },
-      {
-        name: 'Gingerbread',
-        calories: 356,
-      },
-      {
-        name: 'Jelly bean',
-        calories: 375,
-      },
-      {
-        name: 'Lollipop',
-        calories: 392,
-      },
-      {
-        name: 'Honeycomb',
-        calories: 408,
-      },
-      {
-        name: 'Donut',
-        calories: 452,
-      },
-      {
-        name: 'KitKat',
-        calories: 518,
-      },
-    ],
+    users: {
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      phone: '',
+      phoneRules: [
+        v => !!v || 'Name is required',
+      ],
+    }
   }),
+  mounted() {
+    console.log(this.$route.name)
+  },
+  methods: {
+    userCreate() {
+      //this.$router.push('/users')
+    }
+  },
 }
 </script>

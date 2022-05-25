@@ -1,33 +1,79 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import Home      from '@/components/Home'
-import Blogs      from '@/components/Blogs'
-import Footer    from '@/components/shared/Footer'
-import Header    from '@/components/shared/Header'
-import NotFound    from '@/components/NotFound'
+import Login        from '@/components/Login'
+import LoginRoot    from '@/components/Login'
+import Dashboard    from '@/components/Home'
+import Footer       from '@/components/shared/Footer'
+import Header       from '@/components/shared/Header'
+import NotFound     from '@/components/NotFound'
 
+import Users        from '@/components/users/Index'
+import UserCreate   from '@/components/users/Create'
 
 const routes = [
     {
         path: "/",
+        name: "LoginRoot",
+        component: LoginRoot,
+        meta: {
+            title: 'Login'
+        }
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+        meta: {
+            title: 'Login'
+        }
+    },
+    {
+        path: "/dashboard",
         name: "Home",
         components: {
-            'default': Home,
+            'default': Dashboard,
             'header': Header,
             'footer': Footer,
         },
+        meta: {
+            title: 'Dashboard'
+        }
     },
     {
-        path: "/blogs",
-        name: "Blogs",
+        path: "/users",
+        name: "Users",
         components: {
-            'default': Blogs,
+            'default': Users,
+            'header': Header,
+            'footer': Footer,
         },
+        meta: {
+            title: 'Users'
+        }
+    },
+    {
+        path: "/user/create",
+        name: "UserCreate",
+        components: {
+            'default': UserCreate,
+            'header': Header,
+            'footer': Footer,
+        },
+        meta: {
+            title: 'User Create'
+        }
     },
     {
         path: "/:catchAll(.*)",
         name: "NotFound",
-        component: NotFound,
+        components: {
+            'default': NotFound,
+            'header': Header,
+            'footer': Footer,
+        },
+        meta: {
+            title: '404 Not Found'
+        }
     },
 ];
 
@@ -36,7 +82,12 @@ const router = createRouter({
     routes,
     scrollBehavior() {
         document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
-    }
+    },
+});
+
+router.beforeEach((toRoute, fromRoute, next) => {
+    window.document.title = toRoute.meta && toRoute.meta.title ? "RashRon | " + toRoute.meta.title : 'Login';
+    next();
 });
 
 export default router;

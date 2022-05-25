@@ -1,147 +1,132 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+  <div>
+    <v-breadcrumbs :items="breadcrumbs">
+      <template v-slot:text="{ item }">
+        {{ item.text.toUpperCase() }}
+      </template>
+    </v-breadcrumbs>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to the Vuetify 3 Beta
-        </h1>
+    <v-container class="grey lighten-5">
+      <v-row>
+        <v-col cols="12" sm="3" md="3">
+          <v-card class="pa-2 bg-amber-accent-1">
+            <v-card-text>
+              Example - 1
+            </v-card-text>
+          </v-card>
+        </v-col>
 
+        <v-col cols="12" sm="3" md="3">
+          <v-card class="pa-2 bg-amber-accent-2">
+            <v-card-text>
+              Example - 2
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
+        <v-col cols="12" sm="3" md="3">
+          <v-card class="pa-2 bg-amber-accent-3">
+            <v-card-text>
+              Example - 3
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          What's next?
-        </h2>
+        <v-col cols="12" sm="3" md="3">
+          <v-card class="pa-2 bg-amber-accent-4">
+            <v-card-text>
+              Example - 4
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
+      </v-row>
+    </v-container>
+
+    <v-container>
+      <v-card>
+        <v-card-title>
+          Exam Table
+        </v-card-title>
+
+        <v-table>
+          <thead>
+          <tr>
+            <th class="text-left">
+              Name
+            </th>
+            <th class="text-left">
+              Calories
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+              v-for="item in desserts"
+              :key="item.name"
           >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
+            <td>{{ item.name }}</td>
+            <td>{{ item.calories }}</td>
+          </tr>
+          </tbody>
+        </v-table>
+      </v-card>
+    </v-container>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: 'HelloWorld',
-
+  name: 'HeaderComponent',
   data: () => ({
-    ecosystem: [
+    breadcrumbs: [
       {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader',
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify',
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify',
-      },
+        text: 'Dashboard',
+        disabled: true,
+        to: '/',
+      }
     ],
-    importantLinks: [
+    desserts: [
       {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com',
+        name: 'Frozen Yogurt',
+        calories: 159,
       },
       {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify',
+        name: 'Ice cream sandwich',
+        calories: 237,
       },
       {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs',
+        name: 'Eclair',
+        calories: 262,
       },
       {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify',
-      },
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com',
+        name: 'Cupcake',
+        calories: 305,
       },
       {
-        text: 'Roadmap',
-        href: 'https://vuetifyjs.com/introduction/roadmap/',
+        name: 'Gingerbread',
+        calories: 356,
       },
       {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+        name: 'Jelly bean',
+        calories: 375,
+      },
+      {
+        name: 'Lollipop',
+        calories: 392,
+      },
+      {
+        name: 'Honeycomb',
+        calories: 408,
+      },
+      {
+        name: 'Donut',
+        calories: 452,
+      },
+      {
+        name: 'KitKat',
+        calories: 518,
       },
     ],
   }),

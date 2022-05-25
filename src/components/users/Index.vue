@@ -6,127 +6,98 @@
       </template>
     </v-breadcrumbs>
 
-    <v-container class="grey lighten-5">
-      <v-row>
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-1">
-            <v-card-text>
-              Example - 1
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-2">
-            <v-card-text>
-              Example - 2
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-3">
-            <v-card-text>
-              Example - 3
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12" sm="3" md="3">
-          <v-card class="pa-2 bg-amber-accent-4">
-            <v-card-text>
-              Example - 4
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-      </v-row>
-    </v-container>
-
     <v-container>
       <v-card>
         <v-card-title>
-          Exam Table
+          User List
         </v-card-title>
+
+        <v-divider/>
 
         <v-table>
           <thead>
           <tr>
-            <th class="text-left">
-              Name
-            </th>
-            <th class="text-left">
-              Calories
-            </th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Email</th>
+            <th class="text-left">Phone</th>
+            <th class="text-left">Action</th>
           </tr>
           </thead>
           <tbody>
           <tr
-              v-for="item in desserts"
+              v-for="item in users"
               :key="item.name"
           >
             <td>{{ item.name }}</td>
-            <td>{{ item.calories }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>
+              <v-btn class="mr-1" variant="outlined" size="x-small" icon color="green">
+                <v-icon>mdi-eye</v-icon>
+              </v-btn>
+
+              <v-btn class="mr-1" variant="outlined" size="x-small" icon color="info">
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+
+              <v-btn class="mr-1" variant="outlined" size="x-small" icon color="red">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+            </td>
           </tr>
           </tbody>
         </v-table>
       </v-card>
     </v-container>
 
+    <div class="btn-create">
+      <v-btn :to="'/user/create'" color="success" icon="mdi-plus-thick" size="x-large"></v-btn>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComponent',
+  name: 'UsersComponent',
   data: () => ({
     breadcrumbs: [
       {
         text: 'Dashboard',
+        disabled: false,
+        to: '/dashboard',
+      },
+      {
+        text: 'Users',
         disabled: true,
-        to: '/',
       }
     ],
-    desserts: [
+
+    users: [
       {
         name: 'Frozen Yogurt',
-        calories: 159,
+        email: 'Frozen@gmail.com',
+        phone: '010000000000',
       },
       {
         name: 'Ice cream sandwich',
-        calories: 237,
+        email: 'Ice@gmail.com',
+        phone: '0100000034000',
       },
       {
         name: 'Eclair',
-        calories: 262,
+        email: 'Eclair@gmail.com',
+        phone: '0100020034000',
       },
       {
         name: 'Cupcake',
-        calories: 305,
+        email: 'Cupcake@gmail.com',
+        phone: '0100020034070',
       },
       {
         name: 'Gingerbread',
-        calories: 356,
-      },
-      {
-        name: 'Jelly bean',
-        calories: 375,
-      },
-      {
-        name: 'Lollipop',
-        calories: 392,
-      },
-      {
-        name: 'Honeycomb',
-        calories: 408,
-      },
-      {
-        name: 'Donut',
-        calories: 452,
-      },
-      {
-        name: 'KitKat',
-        calories: 518,
+        email: 'Gingerbread@gmail.com',
+        phone: '0100720034070',
       },
     ],
   }),

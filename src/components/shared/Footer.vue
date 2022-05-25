@@ -1,12 +1,11 @@
 <template>
-  <footer>
-    <div class="container">
-      <p class="text-center">
-        © RashRon 2022. Designed by
-        <strong>Rashiqul Rony</strong>
-      </p>
-    </div>
-  </footer>
+  <div>
+    <v-footer app>
+      <v-col class="text-center" cols="12">
+        &copy; {{ new Date().getFullYear() }} — <strong>RashRon</strong>
+      </v-col>
+    </v-footer>
+  </div>
 </template>
 
 <script>

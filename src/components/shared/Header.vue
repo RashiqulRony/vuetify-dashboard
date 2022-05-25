@@ -1,82 +1,57 @@
 <template>
-  <div id="header" class="shadow">
-    <!-- Navigation -->
-    <nav>
-      <div class="nav nav-wrapper navbar-fixed-top">
-        <div class="container-fluid">
+  <div>
+    <v-navigation-drawer v-model="drawer" bottom>
+      <v-list>
+        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams" subtitle="sandra_a88@gmailcom"></v-list-item></v-list>
+      <v-divider></v-divider>
 
-          <!-- Menu Option -->
-          <ul class="nav-justified hide-on-med-and-down">
-            <li><a href="#header">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolios">Portfolios</a></li>
-            <li><a href="#achievement">Achievement</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#clients">Clients</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#interest">Interest</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+      <v-list nav app>
+        <v-list-item prepend-icon="mdi-home" title="Dashboard" :to="'/dashboard'" value="Dashboard"></v-list-item>
+        <v-list-item prepend-icon="mdi-account" title="Users" :to="'/users'" value="Users"></v-list-item>
+        <v-list-item prepend-icon="mdi-cube" title="Categories" :to="'/categories'" value="Categories"></v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-          <a href="#0" data-activates="nav-mobile" id="nav-btn" class="button-collapse nav-icon">
-            <i class="ion-navicon"></i></a>
+    <v-app-bar  app>
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-          <!-- Side Nav -->
-          <div id="side-nav">
-            <div id="nav-header">
-              <div id="nav-profile" class="center-block">
+      <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
 
-                <!-- Profile Picture [Square] -->
-                <img src="images/profile-pic.png">
-              </div>
-              <h6 class="text-center text-capitalize">John Robert Smith</h6>
-            </div>
+      <v-spacer></v-spacer>
 
-            <div id="nav-link-wrapper">
+      <v-btn variant="text" icon="mdi-magnify"></v-btn>
 
-              <!-- Side Menu Option -->
-              <ul>
-                <li><a class="nav-link" href="#header">About</a></li>
-                <li><a class="nav-link" href="#experience">Experience</a></li>
-                <li><a class="nav-link" href="#skills">Skills</a></li>
-                <li><a class="nav-link" href="#education">Education</a></li>
-                <li><a class="nav-link" href="#services">Services</a></li>
-                <li><a class="nav-link" href="#portfolios">Portfolios</a></li>
-                <li><a class="nav-link" href="#achievement">Achievement</a></li>
-                <li><a class="nav-link" href="#publications">Publications</a></li>
-                <li><a class="nav-link" href="#blog">Blog</a></li>
-                <li><a class="nav-link" href="#clients">Clients</a></li>
-                <li><a class="nav-link" href="#pricing">Pricing</a></li>
-                <li><a class="nav-link" href="#interest">Interest</a></li>
-                <li><a class="nav-link" href="#contact">Contact</a></li>
-              </ul>
-            </div>
+      <v-btn variant="text" icon="mdi-filter"></v-btn>
 
-          </div>
-          <!-- ./Side Nav -->
+      <v-menu :anchor="'start'">
+        <template v-slot:activator="{ props }">
+          <v-btn dark icon v-bind="props">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
 
-          <!-- Side Nav Mask -->
-          <div id="side-nav-mask"></div>
+        <v-list nav app>
+          <v-list-item title="Profile" value="Profile"></v-list-item>
+          <v-list-item title="Logout" :to="'/'" value="Logout"></v-list-item>
+        </v-list>
+      </v-menu>
 
-        </div>
-      </div>
-    </nav>
-
-    <!-- Name and Status -->
-    <div id="intro" class="container">
-      <h1 class="text-center text-capitalize">John Robert Smith</h1>
-      <h4 class="text-center text-capitalize">Web Designer & Developer, UX/UI Expert</h4>
-    </div>
+    </v-app-bar>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'HeaderComponent',
 
+  data: () => ({
+    drawer: true,
+  }),
+  watch: {
+    group () {
+      this.drawer = false
+    },
+  },
 }
 </script>
