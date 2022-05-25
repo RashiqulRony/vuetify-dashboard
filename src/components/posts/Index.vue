@@ -26,8 +26,14 @@
           <tbody>
           <tr v-for="item in posts" :key="item.id">
             <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.body }}</td>
+            <td>
+              <span v-if="item.title.length < 30">{{ item.title }}</span>
+              <span v-else>{{ item.title.substring(0, 30)+"..." }}</span>
+            </td>
+            <td>
+              <span v-if="item.body.length < 120">{{ item.title }}</span>
+              <span v-else>{{ item.body.substring(0, 120)+"..." }}</span>
+            </td>
             <td>
               <v-btn class="mr-1" @click="viewPost(item)" variant="outlined" size="x-small" icon color="green">
                 <v-icon>mdi-eye</v-icon>
