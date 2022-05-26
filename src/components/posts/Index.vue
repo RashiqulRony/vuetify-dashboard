@@ -102,7 +102,7 @@ export default {
 
   methods: {
     getPost() {
-      this.axios.get("https://jsonplaceholder.typicode.com/posts")
+      this.axios.get(this.API.getPosts)
           .then((response) => response.data)
           .then((response) => {
             this.posts = response;

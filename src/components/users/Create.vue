@@ -72,7 +72,7 @@ export default {
       ],
       phone: '',
       phoneRules: [
-        v => !!v || 'Name is required',
+        v => !!v || 'Phone is required',
       ],
     }
   }),

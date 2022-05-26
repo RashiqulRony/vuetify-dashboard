@@ -1,10 +1,12 @@
 import { createWebHistory, createRouter } from "vue-router";
 
+import store        from "@/store";
 import Login        from '@/components/Login'
 import LoginRoot    from '@/components/Login'
 import Dashboard    from '@/components/Home'
 import Footer       from '@/components/shared/Footer'
 import Header       from '@/components/shared/Header'
+
 import NotFound     from '@/components/NotFound'
 
 import Users        from '@/components/users/Index'
@@ -38,6 +40,7 @@ const routes = [
             'footer': Footer,
         },
         meta: {
+            requiresAuth: true,
             title: 'Dashboard'
         }
     },
@@ -50,6 +53,7 @@ const routes = [
             'footer': Footer,
         },
         meta: {
+            requiresAuth: true,
             title: 'Users'
         }
     },
@@ -62,6 +66,7 @@ const routes = [
             'footer': Footer,
         },
         meta: {
+            requiresAuth: true,
             title: 'User Create'
         }
     },
@@ -74,17 +79,14 @@ const routes = [
             'footer': Footer,
         },
         meta: {
+            requiresAuth: true,
             title: 'Posts'
         }
     },
     {
         path: "/:catchAll(.*)",
         name: "NotFound",
-        components: {
-            'default': NotFound,
-            'header': Header,
-            'footer': Footer,
-        },
+        component: NotFound,
         meta: {
             title: '404 Not Found'
         }
@@ -95,13 +97,23 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
     scrollBehavior() {
-        document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
 });
 
 router.beforeEach((toRoute, fromRoute, next) => {
     window.document.title = toRoute.meta && toRoute.meta.title ? "RashRon | " + toRoute.meta.title : 'Login';
-    next();
+    if (toRoute.matched.some(record => record.meta.requiresAuth)) {
+        if (store.getters.isLoggedIn === false) {
+            next({
+                path: '/login',
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 });
 
 export default router;

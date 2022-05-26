@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" bottom>
       <v-list>
-        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams" subtitle="sandra_a88@gmailcom"></v-list-item></v-list>
+        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" :title="$store.getters.authUser.name" :subtitle="$store.getters.authUser.email"></v-list-item></v-list>
       <v-divider></v-divider>
 
       <v-list nav app>
@@ -33,7 +33,7 @@
 
         <v-list nav app>
           <v-list-item title="Profile" value="Profile"></v-list-item>
-          <v-list-item title="Logout" :to="'/'" value="Logout"></v-list-item>
+          <v-list-item title="Logout" @click="logout()" value="Logout"></v-list-item>
         </v-list>
       </v-menu>
 
@@ -61,7 +61,12 @@ export default {
       } else {
         this.drawer = true
       }
-    }
+    },
+
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push({ path: `/` });
+    },
   }
 }
 </script>

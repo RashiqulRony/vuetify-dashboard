@@ -1,12 +1,6 @@
 <template>
   <v-container>
 
-    <v-breadcrumbs :items="breadcrumbs">
-      <template v-slot:text="{ item }">
-        {{ item.text.toUpperCase() }}
-      </template>
-    </v-breadcrumbs>
-
     <div class="d-flex justify-space-around align-center flex-column flex-md-row mt-10">
       <h1 style="font-size: 45px; color: #919191">404 | Not Found</h1>
     </div>
